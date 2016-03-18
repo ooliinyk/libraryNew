@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/configuration/HibernateConfiguration.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/configuration/RoleConverter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/configuration/SecurityConfiguration.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/configuration/SecurityWebApplicationInitializer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/configuration/SpringMvcInitializer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/controller/HelloWorldController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/dao/AbstractDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/dao/UserDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/dao/UserDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/service/UserServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/application.properties" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/allBooks.jsp" charset="windows-1251" />
+  </component>
+</project>
