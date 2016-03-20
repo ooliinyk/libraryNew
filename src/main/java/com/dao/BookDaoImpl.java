@@ -21,10 +21,6 @@ public class BookDaoImpl extends AbstractDao<Integer, Book> implements BookDao{
         return (List<Book>)criteria.list();
     }
 
-
-
-
-
     public void save(Book book) {
         persist(book);
 
@@ -38,5 +34,22 @@ public class BookDaoImpl extends AbstractDao<Integer, Book> implements BookDao{
         Criteria criteria = createEntityCriteria();
         criteria.add((Restrictions.eq("name", name)));
         return (Book) criteria.uniqueResult();
+    }
+
+    public Book findByStyle(String style) {
+        Criteria criteria = createEntityCriteria();
+        criteria.add((Restrictions.eq("style", style)));
+        return (Book) criteria.uniqueResult();
+    }
+
+    public Book findByAuthor(String author) {
+        Criteria criteria = createEntityCriteria();
+        criteria.add((Restrictions.eq("author", author)));
+        return (Book) criteria.uniqueResult();
+    }
+
+    public void deleteById(int id) {
+        Book book =  getByKey(id);
+        delete(book);
     }
 }

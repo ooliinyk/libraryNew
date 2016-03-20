@@ -25,17 +25,17 @@ public class User {
     @Column(name = "user_name")
     private String name;
 
+    @Column(name = "user_lastname")
+    private String lastName;
+
     @Column(name = "user_email")
     private String email;
 
     @Column(name = "user_phone_number")
     private int phone;
 
-//    @OneToMany(fetch= FetchType.EAGER, cascade= CascadeType.ALL)
-//    @JoinColumn(name="user_id")
-
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "role_us",
+    @JoinTable(name = "role_user",
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "role_id") })
     private Set<Role> roles = new HashSet<Role>();
@@ -43,26 +43,14 @@ public class User {
     public User() {
     }
 
-    public User(String login, String password, String name, String email, int phone, Set<Role> roles) {
+    public User(String login, String password, String name, String lastName, String email, int phone, Set<Role> roles) {
         this.login = login;
         this.password = password;
         this.name = name;
+        this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone=" + phone +
-                ", roles=" + roles +
-                '}';
     }
 
     public int getId() {
@@ -95,6 +83,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {

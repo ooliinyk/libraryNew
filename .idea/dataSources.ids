@@ -1,43 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="MySQL - test_library@localhost" uuid="25fc08cb-0e5d-4b21-9f0a-378b7638a835">
-    <database-info product="MySQL" version="5.7.9-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
-      <extra-name-characters>#@</extra-name-characters>
-      <identifier-quote-string>`</identifier-quote-string>
-    </database-info>
-    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
-    <schema name="" catalog="test_library"/>
-    <table name="books" schema="" catalog="test_library" type="TABLE">
-      <column name="book_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="book_name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
-      <column name="book_info" sqlType="VARCHAR" precision="300" scale="0" nullable="true" jdbcType="12"/>
-      <column name="book_author" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="book_id"/>
-    </table>
-    <table name="role_us" schema="" catalog="test_library" type="TABLE">
-      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <foreign-key name="role_id" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="test_library" ref-columns="role_id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="user_id" columns="user_id" ref-table="users" ref-schema="" ref-catalog="test_library" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="role_id_idx" unique="false" columns="role_id"/>
-      <index name="user_id_idx" unique="false" columns="user_id"/>
-    </table>
-    <table name="roles" schema="" catalog="test_library" type="TABLE">
-      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="role_name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="role_id"/>
-      <exported-key name="role_id" table="role_us" schema="" catalog="test_library" columns="role_id"/>
-      <index name="role_id_UNIQUE" unique="true" columns="role_id"/>
-    </table>
-    <table name="users" schema="" catalog="test_library" type="TABLE">
-      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="user_login" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
-      <column name="user_password" sqlType="VARCHAR" precision="105" scale="0" nullable="false" jdbcType="12"/>
-      <column name="user_name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
-      <column name="user_email" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
-      <column name="user_phone_number" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="user_id"/>
-      <exported-key name="user_id" table="role_us" schema="" catalog="test_library" columns="user_id"/>
-    </table>
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>

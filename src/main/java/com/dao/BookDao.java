@@ -17,4 +17,10 @@ public interface BookDao {
     Book findById(int id);
 
     Book findByName(String name);
+
+    Book findByStyle(String name);
+
+    Book findByAuthor(String name);
+
+    public void deleteById(int id);
 }

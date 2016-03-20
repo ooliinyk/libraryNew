@@ -14,5 +14,6 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/application.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/allBooks.jsp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registration.jsp" charset="windows-1251" />
   </component>
 </project>

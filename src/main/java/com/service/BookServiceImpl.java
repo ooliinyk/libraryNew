@@ -17,8 +17,26 @@ import java.util.List;
 public class BookServiceImpl implements BookService{
     @Autowired
     BookDao dao;
-
+    public void save(Book book){
+        dao.save(book);
+    }
     public List<Book> findAll() {
         return dao.findAll();
+    }
+
+    public Book findById(int id) {
+        return dao.findById(id);
+    }
+
+    public Book findByName(String name) {
+        return dao.findByName(name);
+    }
+
+    public Book findByStyle(String style) {
+        return dao.findByStyle(style);
+    }
+
+    public Book findByAuthor(String author) {
+        return findByAuthor(author);
     }
 }
