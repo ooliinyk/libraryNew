@@ -17,9 +17,15 @@ public interface BookService {
 
     Book findByName(String name);
 
-    Book findByStyle(String style);
+    List<Book> findByStyle(String style);
 
     Book findByAuthor(String author);
+
+     void updateBook(Book book);
+
+     void deleteBookById(int id);
+
+      int findBookDocumentId(int id);
 
 
 }

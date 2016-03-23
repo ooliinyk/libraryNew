@@ -12,12 +12,14 @@
 </head>
 
 <body>
-
+<div class="container">
+  <jsp:include page="header.jsp"/>
 <div class="form-container">
 
-  <h1>New User Registration Form</h1>
+  <h1>New Book Registration Form</h1>
 
   <form:form method="POST" modelAttribute="book" class="form-horizontal">
+    <form:input type="hidden" path="id" id="id"/>
 
     <div class="row">
       <div class="form-group col-md-12">
@@ -69,10 +71,26 @@
 
     <div class="row">
       <div class="form-actions floatRight">
-        <input type="submit" value="addBook" class="btn btn-primary btn-sm"> or <a href="<c:url value='/admin' />">Cancel</a>
-      </div>
+
+        <c:choose>
+          <c:when test="${edit}">
+            <input type="submit" value="Update" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/listAdmin' />">Cancel</a>
+          </c:when>
+          <c:otherwise>
+            <input type="submit" value="addBook" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/listAdmin' />">Cancel</a>
+          </c:otherwise>
+        </c:choose>
+       </div>
     </div>
+
+    <c:if test="${edit}">
+			<span class="well pull-left">
+				<a href="<c:url value='/add-document-${book.id}' />">Click here to upload/manage your documents</a>
+			</span>
+    </c:if>
   </form:form>
 </div>
+  </div>
+  </div>
 </body>
 </html>

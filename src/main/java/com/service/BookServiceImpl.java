@@ -32,11 +32,32 @@ public class BookServiceImpl implements BookService{
         return dao.findByName(name);
     }
 
-    public Book findByStyle(String style) {
+    public List<Book> findByStyle(String style) {
         return dao.findByStyle(style);
     }
 
     public Book findByAuthor(String author) {
         return findByAuthor(author);
+    }
+
+    public void updateBook(Book book) {
+        Book entity = dao.findById(book.getId());
+        if(entity!=null){
+            entity.setName(book.getName());
+            entity.setAuthor(book.getAuthor());
+            entity.setBookDocument(book.getBookDocument());
+            entity.setInfo(book.getInfo());
+            entity.setStyle(book.getStyle());
+
+        }
+    }
+
+    public void deleteBookById(int id) {
+        dao.deleteById(id);
+    }
+
+    public  int findBookDocumentId(int id){
+        Book book=dao.findById(id);
+        return book.getBookDocument().getId();
     }
 }

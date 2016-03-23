@@ -90,7 +90,6 @@ public class Book implements Serializable {
         this.bookDocument = bookDocument;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,34 +98,22 @@ public class Book implements Serializable {
         Book book = (Book) o;
 
         if (id != book.id) return false;
-        if (name != null ? !name.equals(book.name) : book.name != null) return false;
-        if (info != null ? !info.equals(book.info) : book.info != null) return false;
-        if (author != null ? !author.equals(book.author) : book.author != null) return false;
-        if (style != null ? !style.equals(book.style) : book.style != null) return false;
-        return !(bookDocument != null ? !bookDocument.equals(book.bookDocument) : book.bookDocument != null);
+        if (!name.equals(book.name)) return false;
+        if (!info.equals(book.info)) return false;
+        if (!author.equals(book.author)) return false;
+        if (!style.equals(book.style)) return false;
+        return bookDocument.equals(book.bookDocument);
 
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (info != null ? info.hashCode() : 0);
-        result = 31 * result + (author != null ? author.hashCode() : 0);
-        result = 31 * result + (style != null ? style.hashCode() : 0);
-        result = 31 * result + (bookDocument != null ? bookDocument.hashCode() : 0);
+        result = 31 * result + name.hashCode();
+        result = 31 * result + info.hashCode();
+        result = 31 * result + author.hashCode();
+        result = 31 * result + style.hashCode();
+        result = 31 * result + bookDocument.hashCode();
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", info='" + info + '\'' +
-                ", author='" + author + '\'' +
-                ", style='" + style + '\'' +
-                ", bookDocument=" + bookDocument +
-                '}';
     }
 }

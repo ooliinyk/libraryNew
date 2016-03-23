@@ -36,10 +36,11 @@ public class BookDaoImpl extends AbstractDao<Integer, Book> implements BookDao{
         return (Book) criteria.uniqueResult();
     }
 
-    public Book findByStyle(String style) {
+    public List<Book> findByStyle(String style) {
         Criteria criteria = createEntityCriteria();
-        criteria.add((Restrictions.eq("style", style)));
-        return (Book) criteria.uniqueResult();
+
+        criteria.add(Restrictions.eq("style", style));
+        return (List<Book>) criteria.list();
     }
 
     public Book findByAuthor(String author) {
@@ -52,4 +53,6 @@ public class BookDaoImpl extends AbstractDao<Integer, Book> implements BookDao{
         Book book =  getByKey(id);
         delete(book);
     }
+
+
 }

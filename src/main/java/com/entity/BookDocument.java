@@ -82,32 +82,7 @@ public class BookDocument {
 	}
 
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
 
-		BookDocument that = (BookDocument) o;
-
-		if (id != null ? !id.equals(that.id) : that.id != null) return false;
-		if (name != null ? !name.equals(that.name) : that.name != null) return false;
-		if (description != null ? !description.equals(that.description) : that.description != null) return false;
-		if (type != null ? !type.equals(that.type) : that.type != null) return false;
-		if (!Arrays.equals(content, that.content)) return false;
-		return !(book != null ? !book.equals(that.book) : that.book != null);
-
-	}
-
-	@Override
-	public int hashCode() {
-		int result = id != null ? id.hashCode() : 0;
-		result = 31 * result + (name != null ? name.hashCode() : 0);
-		result = 31 * result + (description != null ? description.hashCode() : 0);
-		result = 31 * result + (type != null ? type.hashCode() : 0);
-		result = 31 * result + (content != null ? Arrays.hashCode(content) : 0);
-		result = 31 * result + (book != null ? book.hashCode() : 0);
-		return result;
-	}
 
 
 }

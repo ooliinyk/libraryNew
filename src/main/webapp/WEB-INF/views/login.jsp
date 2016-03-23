@@ -10,6 +10,9 @@
 	</head>
 
 	<body>
+	<div class="container">
+		<jsp:include page="header.jsp"/>
+
 		<div id="mainWrapper">
 			<div class="login-container">
 				<div class="login-card">
@@ -42,10 +45,14 @@
 									class="btn btn-block btn-primary btn-default" value="Log in">
 							</div>
 						</form>
+						<div class="form-actions">
+							<a class="btn btn-block btn-primary btn-default"  href="<c:url value='/registration' />">Registration</a>
+
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
+	</div>
 	</body>
 </html>

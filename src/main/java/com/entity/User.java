@@ -40,10 +40,16 @@ public class User {
             inverseJoinColumns = { @JoinColumn(name = "role_id") })
     private Set<Role> roles = new HashSet<Role>();
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "book_lists",
+            joinColumns = { @JoinColumn(name = "user_idd") },
+            inverseJoinColumns = { @JoinColumn(name = "book_idd") })
+    private Set<Book> books = new HashSet<Book>();
+
     public User() {
     }
 
-    public User(String login, String password, String name, String lastName, String email, int phone, Set<Role> roles) {
+    public User(String login, String password, String name, String lastName, String email, int phone, Set<Role> roles, Set<Book> books) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -51,6 +57,7 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.roles = roles;
+        this.books = books;
     }
 
     public int getId() {
@@ -115,5 +122,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 }

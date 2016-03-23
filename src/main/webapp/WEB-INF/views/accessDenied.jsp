@@ -8,8 +8,14 @@
 	<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"/>
 </head>
 <body>
+
+<div class="container">
+	<jsp:include page="header.jsp"/>
+	<div class="well">
 	Dear <strong>${user}</strong>, You are not authorized to access this page.
 	<br/>
 	<a href="<c:url value="/home" />">Go to home</a> OR <a href="<c:url value="/logout" />">Logout</a>
+	</div>
+	</div>
 </body>
 </html>
