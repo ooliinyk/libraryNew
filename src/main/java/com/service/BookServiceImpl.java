@@ -28,7 +28,7 @@ public class BookServiceImpl implements BookService{
         return dao.findById(id);
     }
 
-    public Book findByName(String name) {
+    public List<Book> findByName(String name) {
         return dao.findByName(name);
     }
 
@@ -36,7 +36,7 @@ public class BookServiceImpl implements BookService{
         return dao.findByStyle(style);
     }
 
-    public Book findByAuthor(String author) {
+    public List<Book> findByAuthor(String author) {
         return findByAuthor(author);
     }
 

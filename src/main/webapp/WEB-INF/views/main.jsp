@@ -62,7 +62,7 @@
             <form:form method="POST" action="findBookById" commandName="book">
 
                 <label>Find by Id</label>
-                <form:input type="text" path="id" id="id"/>
+                <form:input type="number" path="id" id="id"/>
                 <form:errors type="text" path="id"/>
                 <input type="submit" value="Find">
 
@@ -95,10 +95,10 @@
                     <th>Author</th>
                     <th>Style</th>
                     <sec:authorize access="hasRole('USER')">
-                    <th width="100"></th>
-                    <th width="100"></th>
-                    <th width="100"></th>
-                    <th width="100"></th>
+                        <th width="100"></th>
+                        <th width="100"></th>
+                        <th width="100"></th>
+                        <th width="100"></th>
                     </sec:authorize>
                 </tr>
                 </thead>
@@ -110,15 +110,15 @@
                         <td>${book.info}</td>
                         <td>${book.author}</td>
                         <td>${book.style}</td>
-                        <sec:authorize access="hasRole('USER')">
                         <td><a href="<c:url value='/book-${book.id}' />"
                                class="btn btn-success custom-width">BookPage</a></td>
-                        <td><a href="<c:url value='/edit-book-${book.id}' />"
-                               class="btn btn-success custom-width">edit</a></td>
-                        <td><a href="<c:url value='/delete-book-${book.id}' />" class="btn btn-danger custom-width">delete</a>
-                        </td>
-                        <td><a href="<c:url value='/add-to-list-book-${book.id}' />"
-                               class="btn btn-danger custom-width">add bookto list</a></td>
+                        <sec:authorize access="hasRole('USER')">
+                            <td><a href="<c:url value='/edit-book-${book.id}' />"
+                                   class="btn btn-success custom-width">edit</a></td>
+                            <td><a href="<c:url value='/delete-book-${book.id}' />" class="btn btn-danger custom-width">delete</a>
+                            </td>
+                            <td><a href="<c:url value='/add-to-list-book-${book.id}' />"
+                                   class="btn btn-danger custom-width">add bookto list</a></td>
                         </sec:authorize>
                     </tr>
                 </c:forEach>
@@ -133,9 +133,6 @@
 
 </div>
 <!-- /container -->
-
-
-
 
 
 </body>

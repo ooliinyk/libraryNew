@@ -16,4 +16,7 @@ public interface UserService {
     User findByLogin(String login);
 
     void addToBookList(String login,  Book book);
+
+    public boolean isUserLoginUnique(Integer id, String login) ;
+    public void updateUserRole(User user);
 }

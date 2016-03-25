@@ -31,13 +31,27 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="<c:url value='/listAdmin' />">Home</a></li>
-                <li><a href="<c:url value='/user' />">User page</a></li>
+                <li>
+                    <%--<c:choose>--%>
+                    <%--<c:when test="${pageContext.request.userPrincipal.name != null}">--%>
+                        <%--<a> Hi ${pageContext.request.userPrincipal.name}</a>--%>
+                    <%--</c:when>--%>
+                    <%--<c:otherwise>--%>
+                        <%--<a href="<c:url value='/login' />">Login</a>--%>
+                    <%--</c:otherwise>--%>
+
+                    <a href="<c:url value='/user' />">User page</a>
+
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Add <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="<c:url value='/addbook' />">Add book</a></li>
                         <li><a href="<c:url value='/registration' />">Add user</a></li>
+                        <sec:authorize access="hasRole('USER')">
+                        <li><a href="<c:url value='/addRoleToUser' />">Add Role to User</a></li>
+                        </sec:authorize>
                     </ul>
                 </li>
             </ul>

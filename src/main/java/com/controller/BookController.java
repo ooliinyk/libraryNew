@@ -50,62 +50,91 @@ public class BookController {
         binder.setValidator(fileValidator);
     }
 
-
-    @RequestMapping(value = {"/findBookById" }, method = RequestMethod.GET)
+    /**
+     * Цей метод робить пошук книг по ід
+     */
+    @RequestMapping(value = {"/findBookById"}, method = RequestMethod.GET)
     public String findById1(ModelMap model) {
-        Book book=new Book();
+        Book book = new Book();
 
         model.addAttribute("book", book);
         return "bookPage";
     }
 
-        @RequestMapping(value = {"/findBookById" }, method = RequestMethod.POST)
-    public String findById(@ModelAttribute Book book, @RequestParam Integer id, ModelMap model) {
+    @RequestMapping(value = {"/findBookById"}, method = RequestMethod.POST)
+    public String findById(@ModelAttribute Book book, @RequestParam Integer id, ModelMap model) throws IOException{
 
-        Book book1 =bookService.findById(id);
+        Book book1 = bookService.findById(id);
         model.addAttribute("book", book1);
         return "bookPage";
     }
 
-    @RequestMapping(value = {"/findBookByName" }, method = RequestMethod.GET)
+    /**
+     * Цей метод робить пошук книги по назві
+     */
+    @RequestMapping(value = {"/findBookByName"}, method = RequestMethod.GET)
     public String findBookByNameGet(ModelMap model) {
-        Book book=new Book();
+        Book book = new Book();
 
         model.addAttribute("book", book);
         return "bookPage";
 
     }
-    @RequestMapping(value = {"/findBookByName" }, method = RequestMethod.POST)
+
+    @RequestMapping(value = {"/findBookByName"}, method = RequestMethod.POST)
     public String findBookByName(@ModelAttribute Book book, @RequestParam String name, ModelMap model) {
 
-        Book book1 =bookService.findByName(name);
-        model.addAttribute("book", book1);
-        return "bookPage";
+        List<Book> book1 = bookService.findByName(name);
+        model.addAttribute("bookss", book1);
+        return "books";
     }
 
 
-
-    @RequestMapping(value = {"/findBookByStyle" }, method = RequestMethod.GET)
-    public String findBookByStyleGet(ModelMap model) {
-        Book book=new Book();
+    /**
+     * Цей метод робить пошук книги по автору
+     */
+    @RequestMapping(value = {"/findBookByAuthor"}, method = RequestMethod.GET)
+    public String findBookByAuthorGet(ModelMap model) {
+        Book book = new Book();
 
         model.addAttribute("book", book);
         return "bookPage";
 
     }
 
-    @RequestMapping(value = {"/findBookByStyle" }, method = RequestMethod.POST)
+    @RequestMapping(value = {"/findBookByAuthor"}, method = RequestMethod.POST)
+    public String findBookByAuthor(@ModelAttribute Book book, @RequestParam String author, ModelMap model) {
+
+        List<Book> book1 = bookService.findByAuthor(author);
+        model.addAttribute("bookss", book1);
+        return "books";
+    }
+
+    /**
+     * Цей метод робить пошук книг по стилю
+     */
+    @RequestMapping(value = {"/findBookByStyle"}, method = RequestMethod.GET)
+    public String findBookByStyleGet(ModelMap model) {
+        Book book = new Book();
+
+        model.addAttribute("book", book);
+        return "bookPage";
+
+    }
+
+    @RequestMapping(value = {"/findBookByStyle"}, method = RequestMethod.POST)
     public String findBookByStyle(@ModelAttribute Book book, @RequestParam String style, ModelMap model) {
 
-        List<Book> books=bookService.findByStyle(style);
+        List<Book> books = bookService.findByStyle(style);
         model.addAttribute("bookss", books);
         model.addAttribute("style", style);
         return "books";
     }
 
-
-
-    @RequestMapping(value = { "/book-{bookId}" }, method = RequestMethod.GET)
+    /**
+     * Цей метод показує всі дані про книгу
+     */
+    @RequestMapping(value = {"/book-{bookId}"}, method = RequestMethod.GET)
     public String rediretToBookPage(@PathVariable Integer bookId, ModelMap model) {
         Book book = bookService.findById(bookId);
 
@@ -113,11 +142,12 @@ public class BookController {
         return "bookPage";
     }
 
-
-
-    @RequestMapping(value = {  "/listAdmin" }, method = RequestMethod.GET)
+    /**
+     * Цей метод виводить всі книги в БД
+     */
+    @RequestMapping(value = {"/listAdmin"}, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
-        Book book= new Book();
+        Book book = new Book();
         List<Book> books = bookService.findAll();
         model.addAttribute("books", books);
         model.addAttribute("book", book);
@@ -125,12 +155,10 @@ public class BookController {
     }
 
 
-
-
     /**
-     * This method will provide the medium to update an existing user.
+     * ці методи використовується для редагування даних книги
      */
-    @RequestMapping(value = { "/edit-book-{bookId}" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/edit-book-{bookId}"}, method = RequestMethod.GET)
     public String editUser(@PathVariable Integer bookId, ModelMap model) {
         Book book = bookService.findById(bookId);
 
@@ -139,13 +167,9 @@ public class BookController {
         return "addbook";
     }
 
-    /**
-     * This method will be called on form submission, handling POST request for
-     * updating user in database. It also validates the user input
-     */
-    @RequestMapping(value = { "/edit-book-{bookId}" }, method = RequestMethod.POST)
+    @RequestMapping(value = {"/edit-book-{bookId}"}, method = RequestMethod.POST)
     public String updatBook(@Valid Book book, BindingResult result,
-                             ModelMap model, @PathVariable Integer bookId) {
+                            ModelMap model, @PathVariable Integer bookId) {
 
         if (result.hasErrors()) {
             return "addbook";
@@ -153,22 +177,25 @@ public class BookController {
 
         bookService.updateBook(book);
 
-        model.addAttribute("success", "Book " + book.getName() +" updated successfully");
+        model.addAttribute("success", "Book " + book.getName() + " updated successfully");
         return "redirect:/listAdmin";
     }
 
 
     /**
-     * This method will delete an user by it's SSOID value.
+     * Цей метод видаляє книгу по ід
      */
-    @RequestMapping(value = { "/delete-book-{bookId}" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/delete-book-{bookId}"}, method = RequestMethod.GET)
     public String deleteBook(@PathVariable int bookId) {
         bookService.deleteBookById(bookId);
         return "redirect:/listAdmin";
     }
 
+    /**
+     * Цей метод використовуэться для  додавання книги в список юзера
+     */
 
-    @RequestMapping(value = { "/add-to-list-book-{bookId}" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/add-to-list-book-{bookId}"}, method = RequestMethod.GET)
     public String addToListBook(@PathVariable int bookId) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -183,36 +210,18 @@ public class BookController {
         return "redirect:/listAdmin";
     }
 
-//    @RequestMapping(value = { "/add-to-list-book-{bookId}" }, method = RequestMethod.POST)
-//    public String addToListBook1(@PathVariable int bookId,@PathVariable int userId) {
-//
-//        Set<Book> set= new HashSet<Book>();
-//        set.add(bookService.findById(bookId));
-//        userService.addToBookList(userId, set);
-//
-//        return "main";
-//
-//    }
-
-
-
-
-
     /**
      * Цей метод використовуэться для додавання нової книги
      */
 
     @RequestMapping(value = "/addbook", method = RequestMethod.GET)
     public String newbook(ModelMap model) {
+
         Book book = new Book();
         model.addAttribute("book", book);
         return "addbook";
     }
 
-    /*
-     * This method will be called on form submission, handling POST request It
-     * also validates the book input
-     */
     @RequestMapping(value = "/addbook", method = RequestMethod.POST)
     public String addbook(@Valid Book book,
                           BindingResult result, ModelMap model) {
@@ -221,16 +230,18 @@ public class BookController {
             System.out.println("There are errors");
             return "addbook";
         }
-
         bookService.save(book);
 
-
-
         model.addAttribute("bookadded", "Book: " + book.getName() + " has been added successfully");
-        return "redirect:/add-document-"+book.getId();
+
+        return "redirect:/add-document-" + book.getId();
     }
 
-    @RequestMapping(value = { "/add-document-{bookId}" }, method = RequestMethod.GET)
+    /**
+     * Цей метод використовуэться для додавання файлу в БД і зв'язку його з відповідною книгою
+     */
+
+    @RequestMapping(value = {"/add-document-{bookId}"}, method = RequestMethod.GET)
     public String addDocuments(@PathVariable int bookId, ModelMap model) {
 
         Book book = bookService.findById(bookId);
@@ -243,7 +254,7 @@ public class BookController {
         return "uploadBook1";
     }
 
-    @RequestMapping(value = { "/add-document-{bookId}" }, method = RequestMethod.POST)
+    @RequestMapping(value = {"/add-document-{bookId}"}, method = RequestMethod.POST)
     public String uploadDocument(@Valid FileBucket fileBucket, BindingResult result, ModelMap model, @PathVariable int bookId) throws IOException {
 
         if (result.hasErrors()) {
@@ -254,7 +265,7 @@ public class BookController {
 
             System.out.println("Fetching file");
             Book book = bookService.findById(bookId);
-            if (fileBucket.getFile()==null){
+            if (fileBucket.getFile() == null) {
                 return "allBooks";
             }
             model.addAttribute("book", book);
@@ -265,11 +276,15 @@ public class BookController {
         }
     }
 
-    @RequestMapping(value = { "/download-document-{bookId}" }, method = RequestMethod.GET)
-    public String downloadDocument(@PathVariable int bookId , HttpServletResponse response) throws IOException {
+    /**
+     * Цей метод використовуэться для завантаження файлу
+     */
+
+    @RequestMapping(value = {"/download-document-{bookId}"}, method = RequestMethod.GET)
+    public String downloadDocument(@PathVariable int bookId, HttpServletResponse response) throws IOException {
 
 
-        BookDocument bookDocument=bookDocumentService.findById(bookService.findBookDocumentId(bookId));
+        BookDocument bookDocument = bookDocumentService.findById(bookService.findBookDocumentId(bookId));
 
         response.setContentType(bookDocument.getType());
         response.setContentLength(bookDocument.getContent().length);
@@ -280,12 +295,16 @@ public class BookController {
         return "redirect:/listAdmin";
     }
 
-    @RequestMapping(value = { "/delete-document-{bookId}}" }, method = RequestMethod.GET)
+
+    /**
+     * Цей метод використовуэться для видаленняя файлу
+     */
+
+    @RequestMapping(value = {"/delete-document-{bookId}}"}, method = RequestMethod.GET)
     public String deleteDocument(@PathVariable int bookId) {
         bookDocumentService.deleteById(bookService.findBookDocumentId(bookId));
         return "redirect:/listAdmin";
     }
-
 
 
     private void saveDocument(FileBucket fileBucket, Book book) throws IOException {

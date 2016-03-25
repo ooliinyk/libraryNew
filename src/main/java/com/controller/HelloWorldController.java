@@ -26,6 +26,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/")
+@SessionAttributes("roles")
 public class HelloWorldController {
 
 	@Autowired

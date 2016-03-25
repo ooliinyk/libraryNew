@@ -48,7 +48,7 @@
 
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-lable" for="login">SSO ID</label>
+                    <label class="col-md-3 control-lable" for="login">Login</label>
 
                     <div class="col-md-7">
                         <form:input type="text" path="login" id="login" class="form-control input-sm"/>
@@ -77,7 +77,7 @@
                     <label class="col-md-3 control-lable" for="email">Email</label>
 
                     <div class="col-md-7">
-                        <form:input type="text" path="email" id="email" class="form-control input-sm"/>
+                        <form:input type="text" path="email" id="email" placeholder="test@test.com" class="form-control input-sm"/>
                         <div class="has-error">
                             <form:errors path="email" class="help-inline"/>
                         </div>
@@ -91,7 +91,7 @@
                     <label class="col-md-3 control-lable" for="phone">Phone</label>
 
                     <div class="col-md-7">
-                        <form:input type="text" path="phone" id="phone" class="form-control input-sm"/>
+                        <form:input type="number" path="phone" id="phone" class="form-control input-sm"/>
                         <div class="has-error">
                             <form:errors path="phone" class="help-inline"/>
                         </div>
@@ -104,11 +104,11 @@
                     <c:choose>
                         <c:when test="${edit}">
                             <input type="submit" value="Update" class="btn btn-primary btn-sm"/> or <a
-                                href="<c:url value='/list' />">Cancel</a>
+                                href="<c:url value='/listAdmin' />">Cancel</a>
                         </c:when>
                         <c:otherwise>
                             <input type="submit" value="Register" class="btn btn-primary btn-sm"/> or <a
-                                href="<c:url value='/list' />">Cancel</a>
+                                href="<c:url value='/registration' />">Cancel</a>
                         </c:otherwise>
                     </c:choose>
                 </div>

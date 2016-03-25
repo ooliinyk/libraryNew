@@ -1,6 +1,9 @@
 package com.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -11,23 +14,33 @@ import java.io.Serializable;
 public class Book implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "book_id")
     private int id;
 
+
+
+//    @NotNull
+    @NotEmpty
     @Column(name = "book_name")
     private String name;
 
+//    @NotNull
+    @NotEmpty
     @Column(name = "book_info")
     private String info;
 
+//    @NotNull
+    @NotEmpty
     @Column(name = "book_author")
     private String author;
 
+//        @NotNull
+    @NotEmpty
     @Column(name = "book_style")
     private String style;
 
-    @OneToOne(optional = false, mappedBy="book")
+    @OneToOne(optional = false, mappedBy = "book")
     BookDocument bookDocument;
 
     public Book() {
@@ -85,7 +98,8 @@ public class Book implements Serializable {
     public BookDocument getBookDocument() {
         return bookDocument;
     }
-//
+
+    //
     public void setBookDocument(BookDocument bookDocument) {
         this.bookDocument = bookDocument;
     }
@@ -103,7 +117,7 @@ public class Book implements Serializable {
         if (!author.equals(book.author)) return false;
         if (!style.equals(book.style)) return false;
         return bookDocument.equals(book.bookDocument);
-
+//
     }
 
     @Override
@@ -113,7 +127,6 @@ public class Book implements Serializable {
         result = 31 * result + info.hashCode();
         result = 31 * result + author.hashCode();
         result = 31 * result + style.hashCode();
-        result = 31 * result + bookDocument.hashCode();
         return result;
     }
 }

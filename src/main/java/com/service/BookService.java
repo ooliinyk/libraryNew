@@ -15,11 +15,11 @@ public interface BookService {
 
     Book findById(int id);
 
-    Book findByName(String name);
+    List<Book> findByName(String name);
 
     List<Book> findByStyle(String style);
 
-    Book findByAuthor(String author);
+    List<Book> findByAuthor(String author);
 
      void updateBook(Book book);
 

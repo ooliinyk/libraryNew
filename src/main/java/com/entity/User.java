@@ -1,5 +1,8 @@
 package com.entity;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,38 +15,46 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private int id;
 
-    @Column(name = "user_login")
+    @NotEmpty
+    @Column(name = "user_login", unique = true)
     private String login;
 
+    @NotEmpty
     @Column(name = "user_password")
     private String password;
 
+    @NotEmpty
     @Column(name = "user_name")
     private String name;
 
+
+    @NotEmpty
     @Column(name = "user_lastname")
     private String lastName;
 
+    @NotEmpty
+    @Email
     @Column(name = "user_email")
     private String email;
 
+//    @NotEmpty
     @Column(name = "user_phone_number")
     private int phone;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "role_user",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "role_id") })
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles = new HashSet<Role>();
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "book_lists",
-            joinColumns = { @JoinColumn(name = "user_idd") },
-            inverseJoinColumns = { @JoinColumn(name = "book_idd") })
+            joinColumns = {@JoinColumn(name = "user_idd")},
+            inverseJoinColumns = {@JoinColumn(name = "book_idd")})
     private Set<Book> books = new HashSet<Book>();
 
     public User() {
