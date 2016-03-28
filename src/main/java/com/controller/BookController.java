@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,11 +63,21 @@ public class BookController {
     }
 
     @RequestMapping(value = {"/findBookById"}, method = RequestMethod.POST)
-    public String findById(@ModelAttribute Book book, @RequestParam Integer id, ModelMap model) throws IOException{
+    public String findById(@ModelAttribute Book book, @RequestParam Integer id, ModelMap model) throws IOException {
 
         Book book1 = bookService.findById(id);
+
+        if (book1 == null) {
+            model.addAttribute("fail", "No book with id  " + id + " in DB ");
+//            model.addAttribute("success", "No book with " + id + " in DB ");
+//            return "redirect:/listAdmin";
+//            return "registrationsuccess";
+            model.addAttribute("book", book);
+            return "bookPage";
+        }
         model.addAttribute("book", book1);
         return "bookPage";
+//        return "redirect:/listAdmin" + book1;
     }
 
     /**
@@ -84,7 +95,15 @@ public class BookController {
     @RequestMapping(value = {"/findBookByName"}, method = RequestMethod.POST)
     public String findBookByName(@ModelAttribute Book book, @RequestParam String name, ModelMap model) {
 
-        List<Book> book1 = bookService.findByName(name);
+//        ArrayList<Book> book1 =(ArrayList) bookService.findByName(name);
+        List<Book> book1 =(ArrayList) bookService.findByName(name);
+
+        if(book1.isEmpty()){
+
+            model.addAttribute("fail", "No book with name " + name + " in DB ");
+            return "books";
+//            return "registrationsuccess";
+        }
         model.addAttribute("bookss", book1);
         return "books";
     }
@@ -105,7 +124,12 @@ public class BookController {
     @RequestMapping(value = {"/findBookByAuthor"}, method = RequestMethod.POST)
     public String findBookByAuthor(@ModelAttribute Book book, @RequestParam String author, ModelMap model) {
 
+
         List<Book> book1 = bookService.findByAuthor(author);
+        if(book1.isEmpty()) {
+            model.addAttribute("fail", "No book with author  " + author + " in DB ");
+            return "books";
+        }
         model.addAttribute("bookss", book1);
         return "books";
     }
@@ -125,10 +149,17 @@ public class BookController {
     @RequestMapping(value = {"/findBookByStyle"}, method = RequestMethod.POST)
     public String findBookByStyle(@ModelAttribute Book book, @RequestParam String style, ModelMap model) {
 
+
         List<Book> books = bookService.findByStyle(style);
+
+      if(books.isEmpty()) {
+        model.addAttribute("fail", "No book with author  " + style + " in DB ");
+        return "books";
+    }
         model.addAttribute("bookss", books);
         model.addAttribute("style", style);
         return "books";
+//        return "redirect:/listAdmin"+books;
     }
 
     /**
@@ -251,7 +282,7 @@ public class BookController {
         FileBucket fileModel = new FileBucket();
         model.addAttribute("fileBucket", fileModel);
 
-        return "uploadBook1";
+        return "uploadBook";
     }
 
     @RequestMapping(value = {"/add-document-{bookId}"}, method = RequestMethod.POST)
@@ -260,7 +291,7 @@ public class BookController {
         if (result.hasErrors()) {
             System.out.println("validation errors");
 
-            return "uploadBook1"; //------------------FAIL!!1 CHECK
+            return "uploadBook"; //------------------FAIL!!1 CHECK
         } else {
 
             System.out.println("Fetching file");
@@ -271,8 +302,8 @@ public class BookController {
             model.addAttribute("book", book);
 
             saveDocument(fileBucket, book);
-
-            return "welcome";
+            model.addAttribute("success", "Book name: " + book.getName() + " added successfully");
+            return "registrationsuccess";
         }
     }
 

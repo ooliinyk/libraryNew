@@ -37,7 +37,7 @@ public class BookServiceImpl implements BookService{
     }
 
     public List<Book> findByAuthor(String author) {
-        return findByAuthor(author);
+        return dao.findByAuthor(author);
     }
 
     public void updateBook(Book book) {

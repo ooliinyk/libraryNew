@@ -32,6 +32,7 @@ public class BookDaoImpl extends AbstractDao<Integer, Book> implements BookDao{
 
     public List<Book> findByName(String name) {
         Criteria criteria = createEntityCriteria();
+
         criteria.add((Restrictions.eq("name", name)));
         return (List<Book>) criteria.list();
     }

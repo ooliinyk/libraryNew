@@ -46,6 +46,16 @@
         <%--<input type="submit" value="FindById" >--%>
 
       <%--</form:form>--%>
+        <c:choose>
+          <c:when test="${fail != null}">
+            <div class="well">
+              <div class="error">
+                  ${fail}
+              </div>
+            </div>
+          </c:when>
+             </c:choose>
+
       <table class="table table-hover">
         <thead>
         <tr>

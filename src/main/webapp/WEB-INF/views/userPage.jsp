@@ -54,33 +54,33 @@
     </div>
 
     <div class="panel panel-default">
-    <div class="panel-heading"><span class="lead">Favorites books </span></div>
-    <div class="tablecontainer">
-        <%--<form:form method="POST"  action="findBookById"  commandName="book" >--%>
+        <div class="panel-heading"><span class="lead">Favorites books </span></div>
+        <div class="tablecontainer">
+            <%--<form:form method="POST"  action="findBookById"  commandName="book" >--%>
 
-        <%--<label >Find by Id</label>--%>
-        <%--<form:input type="text" path="id" id="id" />--%>
+            <%--<label >Find by Id</label>--%>
+            <%--<form:input type="text" path="id" id="id" />--%>
 
-        <%--<input type="submit" value="FindById" >--%>
+            <%--<input type="submit" value="FindById" >--%>
 
-        <%--</form:form>--%>
-        <%--<form:form method="POST"  action="findBookByName"  commandName="book" >--%>
+            <%--</form:form>--%>
+            <%--<form:form method="POST"  action="findBookByName"  commandName="book" >--%>
 
-        <%--<label >Find by Id</label>--%>
-        <%--<form:input type="text" path="name" id="name" />--%>
+            <%--<label >Find by Id</label>--%>
+            <%--<form:input type="text" path="name" id="name" />--%>
 
-        <%--<input type="submit" value="FindById" >--%>
+            <%--<input type="submit" value="FindById" >--%>
 
-        <%--</form:form>--%>
+            <%--</form:form>--%>
 
-        <%--<form:form method="POST"  action="findBookByStyle"  commandName="book" >--%>
+            <%--<form:form method="POST"  action="findBookByStyle"  commandName="book" >--%>
 
-        <%--<label >Find by Id</label>--%>
-        <%--<form:input type="text" path="style" id="style" />--%>
+            <%--<label >Find by Id</label>--%>
+            <%--<form:input type="text" path="style" id="style" />--%>
 
-        <%--<input type="submit" value="FindById" >--%>
+            <%--<input type="submit" value="FindById" >--%>
 
-        <%--</form:form>--%>
+            <%--</form:form>--%>
 
             <table class="table table-hover">
                 <thead>
@@ -106,21 +106,22 @@
                         <td>${book.style}</td>
                         <td><a href="<c:url value='/book-${book.id}' />"
                                class="btn btn-success custom-width">BookPage</a></td>
-                            <%--<td><a href="<c:url value='/edit-book-${book.id}' />" class="btn btn-success custom-width">edit</a> </td>--%>
-                            <%--<td><a href="<c:url value='/delete-book-${book.id}' />" class="btn btn-danger custom-width">delete</a></td>--%>
-                            <%--<td><a href="<c:url value='/add-to-list-book-${book.id}' />" class="btn btn-danger custom-width">add bookto list</a></td>--%>
+                        <sec:authorize access="hasRole('USER')">
+                            <td><a href="<c:url value='/download-document-${book.id}' />"
+                                   class="btn btn-success custom-width">Download</a>
+                            </td>
+                        </sec:authorize>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
 
 
-<div class="well">
-    <a href="<c:url value='/registration' />">Add New User</a>
-</div>
+    <div class="well">
+        <a href="<c:url value='/registration' />">Add New User</a>
+    </div>
 </div>
 </body>
 </html>
