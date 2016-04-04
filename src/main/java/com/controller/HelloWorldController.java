@@ -95,7 +95,7 @@ public class HelloWorldController {
 		}
 		return userName;
 	}
-		
+
 	@ModelAttribute("roles")
 	public List<Role> initializeProfiles() {
 		return roleService.findAll();
