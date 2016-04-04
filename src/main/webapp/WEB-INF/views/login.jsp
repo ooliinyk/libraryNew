@@ -13,7 +13,8 @@
 	<div class="container">
 		<jsp:include page="header.jsp"/>
 
-		<div id="mainWrapper">
+
+
 			<div class="login-container">
 				<div class="login-card">
 					<div class="login-form">
@@ -53,6 +54,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 	</body>
 </html>

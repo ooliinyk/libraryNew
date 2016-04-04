@@ -3,6 +3,7 @@ package com.controller;
 
 import com.entity.*;
 import com.service.*;
+import com.task3.Finded;
 import com.util.FileValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -71,37 +72,7 @@ public class HelloWorldController {
 	}
 
 	
-	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
-	public String newsRegistration(ModelMap model) {
-		User user = new User();
-		model.addAttribute("user", user);
-		return "newuser";
-	}
 
-	/*
-	 * This method will be called on form submission, handling POST request It
-	 * also validates the user input
-	 */
-	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
-	public String saveRegistration(@Valid User user,
-			BindingResult result, ModelMap model) {
-
-		if (result.hasErrors()) {
-			System.out.println("There are errors");
-			return "newuser";
-		}
-		userService.save(user);
-		
-
-		if(user.getRoles()!=null){
-			for(Role role : user.getRoles()){
-				System.out.println("Profile : "+ role.getRoleName());
-			}
-		}
-		
-		model.addAttribute("success", "User " + user.getName() + " has been registered successfully");
-		return "registrationsuccess";
-	}
 
 	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
 	public String listEmployees(ModelMap model) {
@@ -124,20 +95,10 @@ public class HelloWorldController {
 		}
 		return userName;
 	}
-
-
-
-
-
-	
+		
 	@ModelAttribute("roles")
 	public List<Role> initializeProfiles() {
 		return roleService.findAll();
 	}
-
-//	@ModelAttribute("roleUser")
-//	public List<Role> initializeProfiles() {
-//		return roleService.findByName("USER").f();
-//	}
 
 }

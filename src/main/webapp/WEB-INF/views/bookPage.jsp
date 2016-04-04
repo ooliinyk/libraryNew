@@ -88,7 +88,6 @@
             </table>
 
             <table class="table table-hover">
-                <thead>
 
                 <tr>
                     <th>Book ID</th>
@@ -114,8 +113,7 @@
                 <%--<tr><td><a href="<c:url value='/edit-book-${book.id}' />" class="btn btn-success custom-width">edit</a> </td></tr>--%>
                 <%--<tr><td><a href="<c:url value='/delete-book-${book.id}' />" class="btn btn-danger custom-width">delete</a></td></tr>--%>
                 <%--<tr><td><a href="<c:url value='/add-to-list-book-${book.id}' />" class="btn btn-danger custom-width">add bookto list</a></td></tr>--%>
-                </thead>
-                </tbody>
+
             </table>
         </div>
     </div>

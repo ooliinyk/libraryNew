@@ -47,30 +47,28 @@ public class UserController {
     UserFormValidator userFormValidator;
 
 
-
     @InitBinder("userFormValidator")
     protected void initBinder(WebDataBinder binder) {
         binder.setValidator(userFormValidator);
     }
 
 
+
+    /**
+     * Цей метод використовуэться для відображення сторінки юзера
+     */
     @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
 
 
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-//        if (name=="anonymousUser") {
-//
-//            return "registration";
-//        }
+
 
         User user = userService.findByLogin(name);
         Set<Book> books = user.getBooks();
         model.addAttribute("books", books);
         model.addAttribute("user", user);
-//        return "redirect:/welcome"+ SecurityContextHolder.getContext().getAuthentication().getName();
         return "userPage";
     }
 
@@ -85,10 +83,6 @@ public class UserController {
     }
 
 
-    /*
-     * This method will be called on form submission, handling POST request It
-     * also validates the user input
-     */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String savedRegistration(@Valid User user,
                                     BindingResult result, ModelMap model) {
@@ -128,9 +122,9 @@ public class UserController {
         return "redirect:/login";
     }
 
-
-
-
+    /**
+     * Ці методи використовуэться для відображення сторінки з функцією додавання юзеру певної ролі
+     */
     @RequestMapping(value = "/addRoleToUser", method = RequestMethod.GET)
     public String addRoleToUSer(ModelMap model) {
         User user = new User();
@@ -138,14 +132,9 @@ public class UserController {
         return "addRoleToUser";
     }
 
-
-    /*
-     * This method will be called on form submission, handling POST request It
-     * also validates the user input
-     */
     @RequestMapping(value = "/addRoleToUser", method = RequestMethod.POST)
     public String saveRoleToUSer(@Valid User user,
-                                    BindingResult result, ModelMap model) {
+                                 BindingResult result, ModelMap model) {
 
 //        if (result.hasErrors()) {
 //            return "redirect:/listAdmin";

@@ -24,83 +24,139 @@
         <div class="panel-heading"><span class="lead">List of Books </span></div>
         <div class="tablecontainer">
 
-                  <form:form method="POST" action="findBookById" commandName="book">
 
-                <label>Find by Id</label>
-                <form:input type="number" path="id" id="id"/>
-                <form:errors type="text" path="id"/>
-                <input type="submit" value="Find">
+            <div class="row">
+                <div class="col-lg-6">
 
-            </form:form>
-            <form:form method="POST" action="findBookByName" commandName="book">
+                    <form:form method="POST" action="findBookById" commandName="book">
 
-                <label>Find by Name</label>
+                        <div class="form-group col-md-12">
+                            <label class="col-md-3 control-lable">Find by Id</label>
 
-                <form:input type="text" path="name" id="name"/>
-                <form:errors type="text" path="name"/>
-                <input type="submit" value="Find">
+                            <div class="col-md-7">
+                                <form:input type="number" path="id" id="id"/>
+                                <input type="submit" value="Find">
 
-            </form:form>
+                                <div class="has-error">
+                                    <form:errors type="text" path="id"/>
+                                </div>
 
-            <form:form method="POST" action="findBookByStyle" commandName="book">
+                            </div>
+                        </div>
 
-                <label>Find by Style</label>
-                <form:input type="text" path="style" id="style"/>
-                <form:errors type="text" path="style"/>
-                <input type="submit" value="Find">
 
-            </form:form>
+                    </form:form>
+                </div>
+                <div class="col-lg-6 ">
+                    <form:form method="POST" action="findBookByName" commandName="book">
 
-            <form:form method="POST" action="findBookByAuthor" commandName="book">
 
-                <label>Find by Author</label>
-                <form:input type="text" path="author" id="author"/>
-                <form:errors type="text" path="author"/>
-                <input type="submit" value="Find">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-3 control-lable">Find by Name</label>
 
-            </form:form>
+                            <div class="col-md-7">
+                                <form:input type="text" path="name" id="name"/>
+                                <input type="submit" value="Find">
 
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Book ID</th>
-                    <th>Book Name</th>
-                    <th>Book infoe</th>
-                    <th>Author</th>
-                    <th>Style</th>
-                    <sec:authorize access="hasRole('USER')">
-                        <th width="100"></th>
-                        <th width="100"></th>
-                        <th width="100"></th>
-                        <th width="100"></th>
-                    </sec:authorize>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${books}" var="book">
+                                <div class="has-error">
+                                    <form:errors type="text" path="name"/>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </form:form>
+                </div>
+                <div class="col-lg-6 ">
+                    <form:form method="POST" action="findBookByStyle" commandName="book">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-3 control-lable">Find by Style</label>
+
+                            <div class="col-md-7">
+                                <form:input type="text" path="style" id="style"/>
+                                <input type="submit" value="Find">
+
+                                <div class="has-error">
+                                    <form:errors type="text" path="style"/>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </form:form>
+                </div>
+                <div class="col-lg-6 ">
+                    <form:form method="POST" action="findBookByAuthor" commandName="book">
+
+                        <div class="form-group col-md-12">
+                            <label class="col-md-3 control-lable">Find by Author</label>
+
+                            <div class="col-md-7">
+                                <form:input type="text" path="author" id="author"/>
+                                <input type="submit" value="Find">
+
+                                <div class="has-error">
+                                    <form:errors type="text" path="author"/>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </form:form>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="tablecontainer">
+                <table class="table table-hover">
+                    <thead>
                     <tr>
-                        <td>${book.id}</td>
-                        <td>${book.name}</td>
-                        <td>${book.info}</td>
-                        <td>${book.author}</td>
-                        <td>${book.style}</td>
-                        <td><a href="<c:url value='/book-${book.id}' />"
-                               class="btn btn-success custom-width">BookPage</a></td>
-
+                        <th>Book ID</th>
+                        <th>Book Name</th>
+                        <th>Book infoe</th>
+                        <th>Author</th>
+                        <th>Style</th>
                         <sec:authorize access="hasRole('USER')">
-                            <%--<td><a href="<c:url value='/edit-book-${book.id}' />"--%>
-                            <%--class="btn btn-success custom-width">edit</a></td>--%>
-                            <td><a href="<c:url value='/download-document-${book.id}' />"
-                                   class="btn btn-success custom-width">Download</a>
-                            </td>
-                            <td><a href="<c:url value='/add-to-list-book-${book.id}' />"
-                                   class="btn btn-danger ">add to favorite</a>
-                            </td>
+                            <th width="100"></th>
+                            <th width="100"></th>
+                            <th width="100"></th>
+                            <th width="100"></th>
                         </sec:authorize>
                     </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${books}" var="book">
+                        <tr>
+                            <td>${book.id}</td>
+                            <td>${book.name}</td>
+                            <td>${book.info}</td>
+                            <td>${book.author}</td>
+                            <td>${book.style}</td>
+                            <td><a href="<c:url value='/book-${book.id}' />"
+                                   class="btn btn-success custom-width">BookPage</a></td>
+
+                            <sec:authorize access="hasRole('USER')">
+                                <%--<td><a href="<c:url value='/edit-book-${book.id}' />"--%>
+                                <%--class="btn btn-success custom-width">edit</a></td>--%>
+                                <td><a href="<c:url value='/download-document-${book.id}' />"
+                                       class="btn btn-success custom-width">Download</a>
+                                </td>
+                                <td><a href="<c:url value='/add-to-list-book-${book.id}' />"
+                                       class="btn btn-danger ">add to favorite</a>
+                                </td>
+                            </sec:authorize>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

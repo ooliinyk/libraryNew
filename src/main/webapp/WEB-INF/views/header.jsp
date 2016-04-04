@@ -28,7 +28,7 @@
             </button>
             <a class="navbar-brand">Online Library</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" >
             <ul class="nav navbar-nav">
                 <li class="active"><a href="<c:url value='/listAdmin' />">Home</a></li>
                 <li>

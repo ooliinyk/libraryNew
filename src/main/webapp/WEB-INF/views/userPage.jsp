@@ -22,7 +22,6 @@
         <div class="panel-heading"><span class="lead">Hello ${user.login}</span></div>
         <div class="tablecontainer">
             <table class="table table-hover">
-                <thead>
                 <tr>
                     <th>User ID</th>
                     <td>${user.id}</td>
@@ -36,19 +35,18 @@
                     <td>${user.lastName}</td>
                 </tr>
                 <tr>
-                    <th>Book infoe</th>
+                    <th>Email</th>
                     <td>${user.email}</td>
                 </tr>
                 <tr>
-                    <th>Author</th>
+                    <th>Phone</th>
                     <td>${user.phone}</td>
                 </tr>
                 <%--<tr><td><a href="<c:url value='/download-document-${book.id}' />" class="btn btn-success custom-width">Download</a></td></tr>--%>
                 <%--<tr><td><a href="<c:url value='/edit-book-${book.id}' />" class="btn btn-success custom-width">edit</a> </td></tr>--%>
                 <%--<tr><td><a href="<c:url value='/delete-book-${book.id}' />" class="btn btn-danger custom-width">delete</a></td></tr>--%>
                 <%--<tr><td><a href="<c:url value='/add-to-list-book-${book.id}' />" class="btn btn-danger custom-width">add bookto list</a></td></tr>--%>
-                </thead>
-                </tbody>
+
             </table>
         </div>
     </div>
@@ -56,32 +54,6 @@
     <div class="panel panel-default">
         <div class="panel-heading"><span class="lead">Favorites books </span></div>
         <div class="tablecontainer">
-            <%--<form:form method="POST"  action="findBookById"  commandName="book" >--%>
-
-            <%--<label >Find by Id</label>--%>
-            <%--<form:input type="text" path="id" id="id" />--%>
-
-            <%--<input type="submit" value="FindById" >--%>
-
-            <%--</form:form>--%>
-            <%--<form:form method="POST"  action="findBookByName"  commandName="book" >--%>
-
-            <%--<label >Find by Id</label>--%>
-            <%--<form:input type="text" path="name" id="name" />--%>
-
-            <%--<input type="submit" value="FindById" >--%>
-
-            <%--</form:form>--%>
-
-            <%--<form:form method="POST"  action="findBookByStyle"  commandName="book" >--%>
-
-            <%--<label >Find by Id</label>--%>
-            <%--<form:input type="text" path="style" id="style" />--%>
-
-            <%--<input type="submit" value="FindById" >--%>
-
-            <%--</form:form>--%>
-
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -110,12 +82,16 @@
                             <td><a href="<c:url value='/download-document-${book.id}' />"
                                    class="btn btn-success custom-width">Download</a>
                             </td>
+                            <td><a href="<c:url value='/add-to-list-book-${book.id}' />"
+                                   class="btn btn-danger ">add to favorite</a>
+                            </td>
                         </sec:authorize>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
+
     </div>
 
 
